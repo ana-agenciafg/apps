@@ -37,7 +37,6 @@ export interface DiscordClient {
  * Also: RepoOwner shouldn't be constant in the future (repos will be hosted elsewhere),
  * so we might use the opportunity to take this into consideration
  */
-
 const _client = (octokit_token: string) =>
   new Octokit({
     auth: octokit_token,
