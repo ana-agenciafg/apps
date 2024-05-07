@@ -1,8 +1,8 @@
 import type { AppContext } from "../../../linx/mod.ts";
 import { nullOnNotFound } from "../../../utils/http.ts";
 import { isAuctionModel } from "../../utils/paths.ts";
-import { toAuction } from "../../utils/transform.ts";
-import { AuctionListingPage } from "../../utils/types/auction.ts";
+import {  toFilters, toAuction } from "../../utils/transform.ts";
+import { AuctionListingPage } from "../../utils/types/auction.ts";"../utils/transform.ts"
 
 /**
  * @title Linx Integration
@@ -35,7 +35,7 @@ const loader = async (
   const products = auctions.Model.ProductAuctions.map((auction) =>
     toAuction(auction, { cdn })
   );
-  const facets = auctions.Model.Grid.Facets;
+  const facets = toFilters(auctions.Model.Grid.Facets,url);
   const pageCount = auctions.Model.Grid.PageCount;
   const pageNumber = auctions.Model.Grid.PageNumber;
   const pageIndex = auctions.Model.Grid.PageIndex;
